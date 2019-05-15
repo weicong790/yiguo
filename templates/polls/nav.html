@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- header top start -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="{% static 'yiguo/assets/img/logo/logo.png' %}" alt="Brand Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="header-settings-area">
+                        <div class="header-top-left">
+                            <nav>
+                                <ul class="d-flex justify-content-center">
+                                    <li>
+                                        <div class="dropdown header-top-dropdown">
+                                            <a class="dropdown-toggle" id="myaccount" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false">
+                                                my account
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="myaccount">
+                                                <a class="dropdown-item" href="my-account.html">my account</a>
+                                                <a class="dropdown-item" href="login-register.html"> login</a>
+                                                <a class="dropdown-item" href="login-register.html">register</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="header-top-right">
+                            <div class="header-search-box">
+                                <form>
+                                    <input type="text" placeholder="Search Here">
+                                    <button><i class="ion-ios-search-strong"></i></button>
+                                </form>
+                            </div>
+                            <div class="mini-cart-wrap">
+                                <button><i class="ion-bag"></i>
+                                    <span class="notification">2</span>
+                                </button>
+                                <ul class="cart-list">
+                                    <li>
+                                        <div class="cart-img">
+                                            <a href="product-details.html"><img src="assets/img/cart/cart-1.jpg"
+                                                                                alt=""></a>
+                                        </div>
+                                        <div class="cart-info">
+                                            <h4><a href="product-details.html">simple product</a></h4>
+                                            <span class="cart-qty">Qty: 1</span>
+                                            <span>$60.00</span>
+                                        </div>
+                                        <div class="del-icon">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="cart-img">
+                                            <a href="product-details.html"><img src="assets/img/cart/cart-2.jpg"
+                                                                                alt=""></a>
+                                        </div>
+                                        <div class="cart-info">
+                                            <h4><a href="product-details.html">virtual product</a></h4>
+                                            <span class="cart-qty">Qty: 2</span>
+                                            <span>$100.00</span>
+                                        </div>
+                                        <div class="del-icon">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </li>
+                                    <li class="mini-cart-price">
+                                        <span class="subtotal">subtotal : </span>
+                                        <span class="subtotal-price ml-auto">$110.00</span>
+                                    </li>
+                                    <li class="checkout-btn">
+                                        <a href="#">View Cart</a>
+                                    </li>
+                                    <li class="checkout-btn">
+                                        <a href="#">checkout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header top end -->
+
+</body>
+</html>

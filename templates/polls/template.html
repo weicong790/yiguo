@@ -1,0 +1,560 @@
+ {% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>Selena - Organic eCommerce Bootstrap 4 Template</title>
+
+    <!--=== Favicon ===-->
+
+    <!--=== All Plugins CSS ===-->
+    <link rel="stylesheet" type="text/css" href="{% static 'yiguo/assets/css/plugins.css' %}">
+    <!--=== All Vendor CSS ===-->
+    <link rel="stylesheet" type="text/css" href="{% static 'yiguo/assets/css/vendor.css' %}">
+    <!--=== Main Style CSS ===-->
+    <link rel="stylesheet" type="text/css" href="{% static 'yiguo/assets/css/style.css' %}">
+
+    <!-- Modernizer JS -->
+    <script src="{% static 'yiguo/assets/js/modernizr-2.8.3.min.js' %}"></script>
+
+
+
+</head>
+
+<body>
+{% block header %}
+<!-- Start Header Area -->
+<header class="header-area">
+    <!-- header top start -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <a href="/polls/template">
+                            <img src="{% static 'yiguo/assets/img/logo.png' %}" alt="Brand Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="header-settings-area">
+                        <div class="header-top-left">
+                            <nav>
+                                <ul class="d-flex justify-content-center">
+                                    <li>
+                                         {% if request.user.is_authenticated %}
+                                        <div class="dropdown header-top-dropdown">
+                                            <a class="dropdown-toggle" id="myaccount" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false">
+                                               {{ user.username }}
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="myaccount">
+                                                <a class="dropdown-item" href="my-account.html"> {{ user.username }}</a>
+                                                <a class="dropdown-item" href="/polls/logout"> 注销</a>
+                                            </div>
+                                        </div>
+                                         {% else %}
+                                             <div class="dropdown header-top-dropdown">
+                                            <a class="dropdown-toggle" id="myaccount" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false">
+                                              请登录
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="myaccount">
+                                                <a class="dropdown-item" href="/polls/login/"> 登录</a>
+                                                <a class="dropdown-item" href="/polls/register/">注册</a>
+                                            </div>
+                                        </div>
+                                         {% endif %}
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+<div class="header-top-right">
+                            <div class="header-search-box">
+                                <form action="/polls/search_result/" method="get" enctype="multipart/form-data" >{% csrf_token %}
+                                    <input type="text" placeholder="输入水果名称" name="fruit">
+                                    <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="header-top-right">
+                                <form action="/polls/search_result/" method="post" enctype="multipart/form-data" >{% csrf_token %}
+                                   <a  class="btn btn__bg btn__sqr" style="background:url({% static 'yiguo/assets/img/pic.png' %});color: white;position: relative;width: 50px;height: 50px; boarder-radius:6px">
+
+                                    <input type="file"  style="opacity:0;position: absolute;left: 0px;width: 50px"    onchange="this.form.submit()" name="picture">
+                                    </a>
+                                </form>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header top end -->
+
+
+
+</header>
+<!-- end Header Area -->
+{% endblock %}
+{% block content %}
+<!-- main wrapper start -->
+<main>
+    <!-- hero slider area start -->
+    <section class="hero-slider-area">
+        <div class="hero-slider-active slider-arrow-style">
+            <div class="single-slider hero-bg hero-bg__1 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="content-inner">
+                                <div class="slider-content">
+                                    <h1>综合排序 <br>智能识别水果种类 </h1>
+                                    <p>点击上方的传送图片自动帮您识别水果，返回结果</p>
+                                    <a href="/polls/search_result/?fruit=酸橙" class="btn">了解一下</a>
+                                </div>
+                                <div class="slider-img">
+                                    <img src="{% static 'yiguo/assets/img/slider1/slide_3.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-slider hero-bg hero-bg__1 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="content-inner">
+                                <div class="slider-content">
+                                    <h1>挑选<br>最优质的水果 <br>覆盖各大电商平台 </h1>
+                                    <p>支持三大电商平台共同筛选水果</p>
+                                    <a href="/polls/search_result/?fruit=樱桃" class="btn">了解一下</a>
+                                </div>
+                                <div class="slider-img">
+                                    <img src="{% static 'yiguo/assets/img/slider1/slide_4.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- hero slider area start -->
+
+    <!-- service features start -->
+    <section class="service-features pt-30">
+        <div class="container">
+            <div class="service-features-inner theme-color">
+                <div class="single-features-item">
+                    <div class="features-icon">
+                        <i class="ion-paper-airplane"></i>
+                    </div>
+                    <div class="features-content">
+                        <h5>智能识别</h5>
+                        <p>系统会根据您提供的图片匹配相应的水果种类</p>
+                    </div>
+                </div>
+                <div class="single-features-item">
+                    <div class="features-icon">
+                        <i class="ion-social-usd"></i>
+                    </div>
+                    <div class="features-content">
+                        <h5>综合推荐推荐</h5>
+                        <p>使用拼多多，京东，淘宝5万条水果店铺的信息，一键排序</p>
+                    </div>
+                </div>
+                <div class="single-features-item">
+                    <div class="features-icon">
+                        <i class="ion-help-buoy"></i>
+                    </div>
+                    <div class="features-content">
+                        <h5>即时跳转</h5>
+                        <p>可直接通过搜索结果跳转到相应的电商平台购买</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service features end -->
+
+
+
+    <!-- product tab area start -->
+    <section class="product-tab pt-60 pb-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h2>Our Products</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!-- product tab menu start -->
+                    <div class="product-tab-menu pb-30">
+                        <ul class="nav justify-content-center">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#tab_one">哈密瓜</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab_two">樱桃</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- product tab menu end -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="tab_one">
+                            <div class="product-tab-wrapper">
+                                <div class="row">
+                                     {% for store_info in Hami_melon_infos %}
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <div class="product-item mb-50">
+                                            <div class="product-thumb">
+                                                <a {% ifnotequal store_info.url '拼多多url' %}href="{{store_info.url }}"{% endifnotequal %}>
+                                                    <img src="{{store_info.image_file_path }}" alt="">
+                                                </a>
+                                                <div class="quick-view-link">
+                                                    <a href="#" data-toggle="modal" data-target="#quick_view"> <span
+                                                            data-toggle="tooltip" title="Quick view"><i
+                                                            class="ion-ios-eye-outline"></i></span> </a>
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <div class="ratings">
+                                                    <span><i class="ion-android-star"></i></span>
+                                                    <span><i class="ion-android-star"></i></span>
+                                                    <span><i class="ion-android-star"></i></span>
+                                                    <span><i class="ion-android-star"></i></span>
+                                                    <span><i class="ion-android-star"></i></span>
+                                                </div>
+                                                <div class="product-name">
+                                                    <h4 class="h5">
+                                                        <a {% ifnotequal store_info.url '拼多多url' %}href="{{store_info.url }}"{% endifnotequal %}>{{ store_info.goods_info }}</a>
+                                                    </h4>
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="regular-price">${{ store_info.price }}</span>
+                                                    <span class="old-price"><del></del></span>
+                                                </div>
+                                                <div class="product-action-link">
+                                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i
+                                                            class="ion-android-favorite-outline"></i></a>
+                                                    <a href="#" data-toggle="tooltip" title="Add to cart"><i
+                                                            class="ion-bag"></i></a>
+                                                    <a href="#" data-toggle="tooltip" title="Compare"><i
+                                                            class="ion-ios-shuffle"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_two">
+                            <div class="product-tab-wrapper">
+                                <div class="row">
+                                     {% for store_info in cherry_infos %}
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <div class="product-item mb-50">
+                                            <div class="product-thumb">
+                                                <a {% ifnotequal store_info.url '拼多多url' %}href="{{store_info.url }}"{% endifnotequal %}>
+                                                    <img src="{{store_info.image_file_path }}" alt="">
+                                                </a>
+                                                <div class="quick-view-link">
+                                                    <a href="#" data-toggle="modal" data-target="#quick_view"> <span
+                                                            data-toggle="tooltip" title="Quick view"><i
+                                                            class="ion-ios-eye-outline"></i></span> </a>
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <div class="ratings">
+                                                    <span><i class="ion-android-star"></i></span>
+                                                    <span><i class="ion-android-star"></i></span>
+                                                    <span><i class="ion-android-star"></i></span>
+                                                    <span><i class="ion-android-star"></i></span>
+                                                    <span><i class="ion-android-star"></i></span>
+                                                </div>
+                                                <div class="product-name">
+                                                    <h4 class="h5">
+                                                        <a {% ifnotequal store_info.url '拼多多url' %}href="{{store_info.url }}"{% endifnotequal %}>{{ store_info.goods_info }}</a>
+                                                    </h4>
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="regular-price">${{ store_info.price }}</span>
+                                                    <span class="old-price"><del></del></span>
+                                                </div>
+                                                <div class="product-action-link">
+                                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i
+                                                            class="ion-android-favorite-outline"></i></a>
+                                                    <a href="#" data-toggle="tooltip" title="Add to cart"><i
+                                                            class="ion-bag"></i></a>
+                                                    <a href="#" data-toggle="tooltip" title="Compare"><i
+                                                            class="ion-ios-shuffle"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product tab area end -->
+
+
+
+    <!-- best sellers area start -->
+    <section class="best-sellers pt-60 pb-60 pb-lg-30 pb-md-30 pb-sm-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="best-sellers-banner">
+
+                        <img src="{% static 'yiguo/assets/img/banner/best-sellers.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="best-sellers-content pt-md-60 pt-sm-60">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="section-title section-title__2">
+                                    <h2>销量排行榜</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row product-carousel-active-3" data-row="3">
+                         {% for store_infos_ranking_list in store_infos_ranking_lists %}
+                            <div class="col">
+                                <div class="single-item mb-30">
+                                    <div class="product-thumb">
+                                        <a {% ifnotequal store_infos_ranking_list.url '拼多多url' %}href="{{ store_infos_ranking_list.url }}"{% endifnotequal %}>
+                                            <img src="{{ store_infos_ranking_list.image_file_path }}" alt="">
+                                        </a>
+                                        <div class="quick-view-link">
+                                            <a  data-toggle="modal" data-target="#quick_view"> <span
+                                                    data-toggle="tooltip" title="Quick view"><i
+                                                    class="ion-ios-eye-outline"></i></span> </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-description">
+                                        <div class="tag-cate">
+                                            <a {% ifnotequal store_infos_ranking_list.url '拼多多url' %}href="{{ store_infos_ranking_list.url }}"{% endifnotequal %}>fruit</a>
+                                        </div>
+
+                                         <div class="product-name">
+                                            <h4 class="h5">
+                                                <a {% ifnotequal store_infos_ranking_list.url '拼多多url' %}href="{{ store_infos_ranking_list.url }}"{% endifnotequal %}>{{  store_infos_ranking_list.goods_sort}}</a>
+                                            </h4>
+                                        </div>
+
+                                        <div class="price-box">
+                                            <span class="regular-price">${{  store_infos_ranking_list.price}}</span>
+                                            <span class="old-price"><del>{{  store_infos_ranking_list.price}}</del></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- best sellers area end -->
+
+    <!-- banner statistic area start -->
+    <div class="banner-statistics">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="img-container mb-sm-30">
+                        <a >
+                            <img src="{% static 'yiguo/assets/img/banner/banner-1a.jpg' %}" alt="banner-image">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img-container mb-sm-30">
+                        <a >
+                            <img src="{% static 'yiguo/assets/img/banner/banner-2a.jpg' %}" alt="banner-image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner statistic area end -->
+
+
+
+
+
+</main>
+<!-- main wrapper end -->
+{% endblock %}
+{% block footer %}
+<!--== Start Footer Area Wrapper ==-->
+<footer class="footer-wrapper">
+
+    <!-- footer main area start -->
+    <div class="footer-main-area">
+        <div class="container">
+            <div class="footer-main-inner bdr-top pt-56 pb-60 pb-md-20 pb-sm-20">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <div class="footer-widget-title">
+                                <h4>联系方式</h4>
+                            </div>
+                            <div class="footer-widget-body">
+                                <ul class="location-wrap">
+                                    <li>
+                                        <h6 class="title">地点:</h6>
+                                        <p>北京市 西土城  北京邮电大学</p>
+                                    </li>
+                                    <li>
+                                        <h6 class="title">电话:</h6>
+                                        <p>无</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <div class="footer-widget-title">
+                                <h4>最新到货</h4>
+                            </div>
+                            <div class="footer-widget-body">
+                                <ul class="category-list">
+                                     {% for store_infos_new_good in store_infos_new_goods %}
+                                    <li>
+                                        <div class="single-item single-item__footer-category">
+                                            <div class="product-thumb">
+                                                <a {% ifnotequal store_infos_new_good.url '拼多多url' %}href="{{store_infos_new_good.url }}"{%  endifnotequal %}>
+                                                    <img src="{{ store_infos_new_good.image_file_path }}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="product-description">
+                                                <div class="product-name">
+                                                    <h4 class="h5">
+                                                        <a {% ifnotequal store_infos_new_good.url '拼多多url' %}href="{{store_infos_new_good.url }}"{% endifnotequal %}>{{ store_infos_new_good.goods_info }}</a>
+                                                    </h4>
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="regular-price">${{ store_infos_new_good.price }}</span>
+                                                    <span class="old-price"><del></del></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <div class="footer-widget-title">
+                                <h4>销量最多</h4>
+                            </div>
+                            <div class="footer-widget-body">
+                                <ul class="category-list">
+                                    {% for store_infos_top_rated_good in store_infos_top_rated_goods %}
+                                    <li>
+                                        <div class="single-item single-item__footer-category">
+                                            <div class="product-thumb">
+                                                <a {% ifnotequal store_infos_top_rated_good.url '拼多多url' %}href="{{store_infos_top_rated_good.url }}"{% endifnotequal %}>
+                                                    <img src="{{ store_infos_top_rated_good.image_file_path }}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="product-description">
+                                                <div class="product-name">
+                                                    <h4 class="h5">
+                                                        <a {% ifnotequal store_infos_top_rated_good.url '拼多多url' %}href="{{store_infos_top_rated_good.url }}"{% endifnotequal %}>{{ store_infos_top_rated_good.goods_info }}</a>
+                                                    </h4>
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="regular-price">${{ store_infos_top_rated_good.price }}</span>
+                                                    <span class="old-price"><del></del></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <div class="footer-widget-title">
+                                <h4>信息</h4>
+                            </div>
+                            <div class="footer-widget-body">
+                                <div class="newsletter-desc">
+                                    <p>如果你对网站有什么建议，请填写下方的反馈信息，并提交</p>
+                                    <form id="mc-form">
+                                        <input type="txt" id="mc-email" autocomplete="off"
+                                               placeholder="信息">
+                                        <button id="mc-submit"><i class="ion-paper-airplane"></i>提交</button>
+                                    </form>
+                                    <!-- mailchimp-alerts Start -->
+                                    <div class="mailchimp-alerts">
+                                        <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                        <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                                        <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                                    </div>
+                                    <!-- mailchimp-alerts end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer main area end -->
+
+
+
+</footer>
+<!--== End Footer Area Wrapper ==-->
+{% endblock %}
+<!-- Scroll to top start -->
+<div class="scroll-top not-visible">
+    <i class="fa fa-angle-up"></i>
+</div>
+<!-- Scroll to Top End -->
+
+<!--=======================Javascript============================-->
+<!--=== All Vendor Js ===-->
+<script src="{% static 'yiguo/assets/js/vendor.js' %}"></script>
+<!--=== All Plugins Js ===-->
+<script src="{% static 'yiguo/assets/js/plugins.js' %}"></script>
+<!--=== Active Js ===-->
+<script src="{% static 'yiguo/assets/js/active.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+
+      {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/bootstrap-4.0.0.css' %}">
+       <script>
+		   function up123(){
+	  alert('发送成功');
+	var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        //保存的例子模板httpRequest.open('GET', 'http://101.200.63.44:8080/?`xy=1,2 3,4&vi=1,2&fi=2,4', true);
+		//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+	var xy = document.getElementById("xy").value;
+	var vi = document.getElementById("vi").value;
+	var fi = document.getElementById("fi").value;
+
+	var value1='xy='+xy+'&'+'vi='+vi+'&'+'fi='+fi;
+	 	httpRequest.open('GET', 'http://101.200.63.44:8080/centroidMethod?'+value1.toString(), true);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = httpRequest.responseText;//获取到json字符串，还需解析
+               alert('结果 '+" \n "+json);
+            }
+        };
+}
+</script>
+</head>
+  <body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="jumbotron">
+				<h1>
+					重心法求地址
+				</h1>
+</div>
+			<p class="text-left">
+				 <em>重心法</em> xi,yi按照格式书写，例如（1，2）（3，4）两个点，写作 <strong>1,2 3,4</strong> ，x和y用<strong>逗号</strong>分开，两个点之间用<strong>空格</strong> 分开。对于vi和fi都用<strong>逗号</strong>分开，全部为英文字符。
+			</p>
+		  <form class="form-horizontal" role="form">
+			  
+				<div class="form-group">
+					 <label for="inputEmail3" class="col-sm-2 control-label">x,y</label>
+					
+					<div class="col-sm-10">
+						<textarea Rows="3" type="text" class="form-control" id="xy" ></textarea>
+					</div>
+				</div>
+			  
+			  <div class="form-group">
+					 <label for="inputEmail3" class="col-sm-2 control-label">fi</label>
+					
+					<div class="col-sm-10">
+						<textarea Rows="3" type="text" class="form-control" id="fi" ></textarea>
+					</div>
+				</div>
+			  
+			  <div class="form-group">
+					 <label for="inputEmail3" class="col-sm-2 control-label">vi</label>
+					
+					<div class="col-sm-10">
+						<textarea Rows="3" type="text" class="form-control" id="vi" ></textarea>
+					</div>
+				</div>
+			  
+				
+			  
+			  
+			  
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox"> </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10 offset-xl-0 text-center" >
+					
+						<input type="button" value="Submit"  onclick="up123()">
+					</div>
+				</div>
+			</form>
+			<div class="progress progress-striped active">
+				<div class="progress-bar progress-success">
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</div>
+
+
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static 'polls/js/jquery-3.2.1.min.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <scr <script src="{% static 'polls/js/bootstrap-4.0.0.js' %}"></script>
+ipt src="{% static 'polls/js/popper.min.js' %}"></script>
+
+{#    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->#}
+{#    <script src="js/jquery-3.2.1.min.js"></script>#}
+{#    <!-- Include all compiled plugins (below), or include individual files as needed -->#}
+{#    <script src="js/popper.min.js"></script>#}
+{#    <script src="js/bootstrap-4.0.0.js"></script>#}
+  </body>
+</html>

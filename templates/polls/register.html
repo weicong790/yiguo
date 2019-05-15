@@ -1,0 +1,40 @@
+
+   {% extends 'polls/template.html' %}
+{% block content %}
+   <div class="login-register-wrapper pt-60 pb-60">
+        <div class="container">
+            <div class="member-area-from-wrap text-center" style="margin:0 auto;width:420px;margin-top:20px">
+
+                        <div class="login-reg-form-wrap">
+                            <h2>注册</h2>
+
+                            <form action="/polls/register/" method="post" enctype="multipart/form-data">{% csrf_token %}
+                                <div class="single-input-item">
+                                    <input type="text" placeholder="用户名" name="username" required/>
+                                </div>
+
+                                <div class="single-input-item">
+                                            <input type="password" placeholder="密码" name="password" required/>
+                                        </div>
+
+                                 <div class="single-input-item">
+                                            <input type="password" placeholder="再次输入密码" required/>
+                                        </div>
+
+                                <div class="single-input-item">
+                                    <button class="btn btn__bg btn__sqr" type="submit">提交</button>
+                                    <div class="single-input-item">
+                                 <p style="color: red">{{ error }}</p>
+                                 </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Register Content End -->
+                </div>
+            </div>
+
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

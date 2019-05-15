@@ -1,0 +1,37 @@
+ <li>----------------goodinfo----------</li>
+<ul>
+        {% for goodinfo in goodinfos %}
+            <li>种类:{{ goodinfo.goods_sort }}&nbsp;&nbsp;建:{{ goodinfo.keys }}</li>
+        {% endfor %}
+ 
+    </ul>
+
+ <li>----------------searchHistory----------</li>
+ <ul>
+        {% for searchHistory in searchHistorys %}
+            <li>name:{{ searchHistory.create_time }}&nbsp;&nbsp;age:{{ searchHistory.user_name }}&nbsp;&nbsp;age:{{ searchHistory.goods_sort }}&nbsp;&nbsp;rage:{{ searchHistory.seach_id }}</li>
+        {% endfor %}
+
+    </ul>
+
+
+<li>----------------storeInfo----------</li>
+ <ul>
+        {% for storeInfo in storeInfos %}
+            <li>name:{{ storeInfo.goods_info }}&nbsp;&nbsp;age:{{ storeInfo.store_name }}</li>
+            <li>name:{{ storeInfo.store_name }}&nbsp;&nbsp;age:{{ storeInfo.goods_sort }}</li>
+            <li>name:{{ storeInfo.price }}&nbsp;&nbsp;age:{{ storeInfo.url }}</li>
+            <li>name:{{ storeInfo.sale_rating }}&nbsp;&nbsp;age:{{ storeInfo.address }}</li>
+            <li>name:{{ storeInfo.source_site }}&nbsp;&nbsp;age:{{ storeInfo.image_file_path }}</li>
+            <li>--------------------------</li>
+        {% endfor %}
+
+    </ul>
+
+<li>-----------userInfo---------------</li>
+ <ul>
+        {% for userInfo in userInfos %}
+            <li>name:{{ userInfo.user_name }}&nbsp;&nbsp;age:{{ userInfo.password }}</li>
+        {% endfor %}
+
+    </ul>

@@ -1,0 +1,211 @@
+  {% extends 'polls/template.html' %}
+{% block content %}
+     {% load static %}
+<!-- main wrapper start -->
+<main>
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb">
+                            <h2>shop</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">筛选</li>
+                                <li class="breadcrumb-item active" aria-current="page">水果商品</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb area end -->
+
+    <!-- page main wrapper start -->
+    <div id="wrapperstart" class="shop-main-wrapper pt-60 pb-60">
+        <div class="container">
+            <div class="row">
+                <!-- 左边栏 -->
+                <div class="col-lg-3 order-1 order-lg-1">
+                    <div class="sidebar-wrapper mt-md-60 mt-sm-60">
+                        <!-- single sidebar start -->
+                        <div class="sidebar-single">
+                            <div class="sidebar-title">
+                                <h3>shop</h3>
+                            </div>
+                            <div class="sidebar-body">
+                                <ul class="sidebar-category">
+                                    <li><a href="#">电商</a>
+                                        <ul class="children">
+                                            <li ><a href="?shop1={% if shop1 == 'Taobao' %}0{% else %}Taobao{% endif %}&shop2={{ shop2 }}&shop3={{ shop3 }}&select_opt={{ select_opt }}&fruit={{ fruit }}"
+                                                    {% ifequal shop1 'Taobao' %}style="background-color:#62d2a2"{% endifequal %} >淘宝</a></li>
+                                           <li ><a href="?shop1={{ shop1 }}&shop2={% if shop2 == 'Pingduoduo' %}0{% else %}Pingduoduo{% endif %}&shop3={{ shop3 }}&select_opt={{ select_opt }}&fruit={{ fruit }}"
+                                                    {% ifequal shop2 'Pingduoduo' %}style="background-color:#62d2a2"{% endifequal %} >拼多多</a></li>
+                                        <li ><a href="?shop1={{ shop1 }}&shop2={{ shop2 }}&shop3={% if shop3 == 'Jingdong' %}0{% else %}Jingdong{% endif %}&select_opt={{ select_opt }}&fruit={{ fruit }}"
+                                                    {% ifequal shop3 'Jingdong' %}style="background-color:#62d2a2"{% endifequal %} >京东</a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single sidebar end -->
+                        <!-- single sidebar start -->
+                        <div class="sidebar-single">
+                            <div class="sidebar-title">
+                                <h3>filter by price</h3>
+                            </div>
+
+                            <div class="sidebar-body">
+                                <div class="price-range-wrap">
+                                    <div class="price-range" data-min="10" data-max="100" data-mins="{{ mins }}" data-maxs="{{ maxs }}"></div>
+                                    <div class="range-slider">
+                                        <form  action="/polls/search_result/" method="POST">{% csrf_token %}
+                                            <div class="price-input">
+                                                <label for="amount">价格区间: </label>
+                                                <input type="text" id="amount"  name="price_range" value="{{ price_range }}" >
+                                                <input type="hidden"  name="shop1" value="{{ shop1 }}" >
+                                                <input type="hidden"  name="shop2" value="{{ shop2 }}" >
+                                                <input type="hidden"  name="shop3" value="{{ shop3 }}" >
+                                                <input type="hidden"  name="select_opt" value="{{ select_opt }}" >
+                                                <input type="hidden"  name="fruit" value="{{ fruit }}" >
+                                            </div>
+                                            <button class="filter-btn" type="submit">筛选</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- single sidebar end -->
+                        <!-- single sidebar start -->
+
+                        <div id="ad1" class="sidebar-single">
+                            <div class="sidebar-banner">
+                                <a class="ad">
+                                    <img src="{% static 'yiguo/assets/img/banner/banner_left.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div id="ad2" class="sidebar-banner">
+                                <a class="ad" >
+                                    <img src="{% static 'yiguo/assets/img/banner/banner_left2.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- single sidebar end -->
+                    </div>
+                </div>
+                <!-- 左边栏 -->
+                <!-- 右边栏 -->
+                <div class="col-lg-9 order-2 order-lg-2">
+                    <div class="shop-product-wrapper">
+                        <!-- 销量 价格条 -->
+                        <div class="shop-top-bar">
+                            <div class="row">
+
+                                <div class="col-xl-7 col-lg-8 col-md-9 order-1 order-md-2">
+                                    <div class="top-bar-right">
+                                        <div class="product-short">
+                                            <p>筛选 : </p>
+                                            <select class="nice-select" name="sortby" onchange="doGet(this.options[this.options.selectedIndex].value)">
+                                                <option {% ifequal select_opt 'trend' %}selected="selected"{% endifequal %} value="trend">默认</option>
+                                                <option {% ifequal select_opt 'sales' %}selected="selected"{% endifequal %}  value="sales">销量</option>
+                                                <option {% ifequal select_opt 'price' %}selected="selected"{% endifequal %} value="price">价格</option>
+                                            </select>
+                                        </div>
+                                        <div class="product-amount">
+                                            <p>网站资源仅限三大电商网站的首页数据</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 销量 价格条 -->
+
+                        <!-- 具体店铺 -->
+                        <div class="shop-product-wrap list-view row">
+                        {% for store_info in store_infos %}
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+
+                                <!-- product list item start -->
+                                <div class="product-list-item mb-30">
+                                    <div class="product-thumb">
+                                        <a {% ifnotequal store_info.url '拼多多url' %}href="{{store_info.url }}"{% endifnotequal %}>
+                                            <img src="{{ store_info.image_file_path }}" alt="">
+                                        </a>
+                                        <div class="quick-view-link">
+                                            <a href="#" data-toggle="modal" data-target="#quick_view"> <span
+                                                    data-toggle="tooltip" title="Quick view"><i
+                                                    class="ion-ios-eye-outline"></i></span> </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content-list">
+                                        <div class="ratings">
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                        </div>
+                                        <div class="product-name">
+                                            <h4><a {% ifnotequal store_info.url '拼多多url' %}href="{{store_info.url }}"{% endifnotequal %}>{{ store_info.goods_info }}</a></h4>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="regular-price">${{ store_info.price }}</span>
+                                            <span class="old-price">        {{ store_info.sale_rating }}人付款</span>
+                                        </div>
+                                        <p> 种类：{{ store_info.goods_sort.goods_sort }} </p>
+                                        <p>店铺：{{ store_info.store_name }} </p>
+                                        <div class="action-link">
+                                            <a {% ifnotequal store_info.url '拼多多url' %}href="{{store_info.url }}"{% endifnotequal %} data-toggle="tooltip" title="Add to cart" class="add-to-cart">购买</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- product list item start -->
+                            </div>
+                        {% endfor %}
+                        </div>
+                        <!-- 具体店铺 -->
+
+                    </div>
+                </div>
+                <!-- 右边栏 -->
+            </div>
+        </div>
+    </div>
+    <!-- page main wrapper end -->
+</main>
+<!-- main wrapper end -->
+    <script src="{% static 'polls/js/jquery-3.2.1.min.js' %}"></script>
+ <script>
+        function doGet(select_opt)
+        {
+
+            {#$.get("/polls/search_result/","shop1={{ shop1 }}&shop2={{ shop2 }}&shop3={{ shop3 }}&select_opt="+select_opt);#}
+            location.href='/polls/search_result/?'+"shop1={{ shop1 }}&shop2={{ shop2 }}&shop3={{ shop3 }}&fruit={{ fruit }}&price_range={{ price_range }}&select_opt="+select_opt;
+ }
+
+ function goPAGE() {
+                if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+                    /*window.location.href="你的手机版地址";*/
+                    document.getElementById("ad1").style.display="none";
+                    document.getElementById("ad2").style.display="none";
+                    document.getElementById("wrapperstart").classList.remove("pt-60");
+                    {#document.getElementById("wrapperstart").classList.add("mystyle");#}
+                    {#alert("mobile")#}
+
+                }
+                else {
+                    /*window.location.href="你的电脑版地址";    */
+                    /*window.location.href="你的电脑版地址";    */
+                    {#alert("pc")#}
+                }
+            }
+            goPAGE();
+    </script>
+{% endblock %}
+{% block footer %}
+{% endblock %}
